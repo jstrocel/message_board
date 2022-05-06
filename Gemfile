@@ -32,8 +32,16 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec", "~> 3.11"
-
+  gem 'rspec-rails'
   gem "guard", "~> 2.18"
+  gem "shoulda", "~> 4.0"
+
+  gem "factory_bot", "~> 6.2"
+
+  gem "faker", "~> 2.20"
+
+  gem "factory_bot_rails", "~> 6.2"
+  gem 'guard-rspec', require: false
 end
 
 group :development do
@@ -59,3 +67,9 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 
 gem "devise", "~> 4.8"
+
+gem "bootstrap", "~> 5.1"
+
+gem "jquery-rails", "~> 4.4"
+
+
