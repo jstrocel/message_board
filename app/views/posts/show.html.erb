@@ -1,19 +1,85 @@
 <p id="notice"><%= notice %></p>
+<header class="masthead">
+  <div class="container position-relative px-4 px-lg-5">
+      <div class="row gx-4 gx-lg-5 justify-content-center">
+          <div class="col-md-10 col-lg-8 col-xl-7">
+              <div class="site-heading">
+                  <h1><%= @post.title %></h1>
+                  <span class="subheading">Posted by <%=@post.user.name%> on <%=@post.created_at.strftime("%B %d, %Y").gsub(' 0', ' ') %></span>
+              </div>
+          </div>
+      </div>
+  </div>
+</header>
+<article class="mb-4">
+      <div class="container px-4 px-lg-5">
+          <div class="row gx-4 gx-lg-5 justify-content-center">
+              <div class="col-md-10 col-lg-8 col-xl-7">
+                <%= @post.body %>
+              </div>
+          </div>
+      </div>
+     <div class="row gx-4 gx-lg-5 justify-content-center">
+                <div class="col-md-10 col-lg-8 col-xl-7">
+                  <%= render @comments %>
+                </div>
+            </div>
+  </article>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+       <!-- Footer-->
+        <footer class="border-top">
+            <div class="container px-4 px-lg-5">
+                <div class="row gx-4 gx-lg-5 justify-content-center">
+                    <div class="col-md-10 col-lg-8 col-xl-7">
+                        <ul class="list-inline text-center">
+                          <% if current_user == @post.user %>
+                            <li class="list-inline-item">
+                                 <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editModal">
+                                   Edit This Post
+                                </button>
+                              </li>
+                              <%end%>
+                              <li class="list-inline-item">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#commentModal">
+                                   Comment on this post
+                                </button>
+                              </li>
+  </ul>
+                        <div class="small text-center text-muted fst-italic">Copyright &copy; Your Website 2022</div>
+                    </div>
+                </div>
+            </div>
+        </footer>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<!-- Modal -->
+<div class="modal fade" id="commentModal" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="commentModalLabel">Make a Comment</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <%= render 'comment_form', comment: @comment %>
+    </div>
+  </div>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
+<div class="modal fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="editModalLabel">Edit Post</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+        <%= render 'form', post: @post %>
+    </div>
+  </div>
+</div>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+
+
+
+
+
+|
 <%= link_to 'Back', posts_path %>
