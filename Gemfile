@@ -38,7 +38,7 @@ group :development, :test do
 
   gem "factory_bot", "~> 6.2"
 
-  gem "faker", "~> 2.20"
+
 
   gem "factory_bot_rails", "~> 6.2"
   gem 'guard-rspec', require: false
@@ -68,4 +68,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem "devise", "~> 4.8"
 
-
+gem "faker", "~> 2.20"
